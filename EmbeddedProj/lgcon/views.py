@@ -2,9 +2,5 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def index(request):
-    
-    return render(
-        request,
-        'lgcon/mega.html', 
-    )
+def landing(requset):
+    return render(requset, "lgcon/mega.html")
