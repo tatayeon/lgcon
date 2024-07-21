@@ -3,7 +3,6 @@ import os
 from django.contrib.auth.models import User
 
 # Create your models here.
-
 class Category(models.Model):
     category_name = models.CharField(max_length=30, unique=True)
 
@@ -13,7 +12,7 @@ class Category(models.Model):
         return self.category_name
     
     def get_absolute_url(self):
-        return f'/lgcom/category/{self}/'
+        return f'/lgcon/category/{self}/'
     
     class Meta:
         verbose_name_plural = "Categories"
