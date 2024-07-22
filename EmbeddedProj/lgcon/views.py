@@ -5,5 +5,5 @@ def landing(requset, pk):
 
     context = {"id" : pk}
 
-    return render(requset, "lgcon/mega.html", context=context)
+    return render(requset, "lgcon/index.html", context=context)
 

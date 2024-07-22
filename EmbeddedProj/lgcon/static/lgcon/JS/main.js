@@ -15,7 +15,6 @@ function start_btn() {
     document.getElementById("nextpage").style.display = 'flex';
     document.getElementById("pay").style.display = 'flex';
     hide_order_list();
-
 }
 
 function hide_order_list() {
@@ -112,41 +111,50 @@ function Item(name, price) {
     this.price = parseInt(price);
 }
 
+// 주문 목록 초기화
 var order_list = [];
 
+// 메뉴 항목 선택 함수
 function option(id, type, price) {
     var drink = document.getElementById(id);
-    //drink.style.borderStyle = 'solid';
-    // drink.style.borderColor = 'red';
+    drink.style.borderStyle = 'solid';
+    drink.style.borderColor = 'red';
 
     var order = new Item(id, price);
-    order.number += 1;
-
-    var cnt = 0;
-    for (var i = 0; i < order_list.length; i++) {
-        if (order.name == order_list[i].name) {
-            order_list[i].number += 1;
-            cnt += 1;
-        }
-    }
-    if (cnt == 0 || order_list.length == 0) {
+    var existingOrder = order_list.find(item => item.name === id);
+    if (existingOrder) {
+        existingOrder.number += 1;
+    } else {
+        order.number += 1;
         order_list.push(order);
     }
     
     open_order_list(order_list);
 
-    if (type == "no_option") {
-        /**/
-    }
+    
 }
 
-// x키를 눌렀을 때 삭제
+//x키 삭제 함수
 function deleteItem(index) {
     if (index >= 0 && index < order_list.length) {
-        order_list.splice(index, 1); 
+        resetItemBorder(order_list[index].name); // 항목 삭제 시 테두리 초기화
+        order_list.splice(index, 1);
         open_order_list(order_list);
     } else {
         console.error("Invalid index: ", index);
+    }
+
+    // 주문 목록이 비었는지 확인하고 초기화
+    if (order_list.length === 0) {
+        clear_order_list();
+    }
+}
+
+// 주문 항목 테두리 초기화 함수
+function resetItemBorder(id) {
+    var drink = document.getElementById(id);
+    if (drink) {
+        drink.style.borderStyle = 'none';
     }
 }
 
@@ -160,22 +168,38 @@ function increaseQuantity(index) {
     }
 }
 
-// -키를 눌렀을 때 -1개
+
+// 주문 항목 테두리 초기화 함수
+// function delete_item(index) {
+//     order_list = order_list.splice(index, 1);
+//     open_order_list(order_list);
+// }
+
 function decreaseQuantity(index) {
     if (order_list[index]) {
         if (order_list[index].number > 1) {
             order_list[index].number -= 1;
         } else {
+            resetItemBorder(order_list[index].name); // 항목 삭제 시 테두리 초기화
             order_list.splice(index, 1);
         }
         open_order_list(order_list);
     } else {
         console.error("Invalid index: ", index);
     }
+
+    // 주문 목록이 비었는지 확인하고 초기화
+    if (order_list.length === 0) {
+        clear_order_list();
+    }
 }
 
-/* order_list에 표시하기 */
+
+
+
+/*order_list에 표시하기*/
 var total_list = [0, 0];
+
 function open_order_list(order_list) {
     var total_num = 0;
     var total_price = 0;
@@ -191,16 +215,41 @@ function open_order_list(order_list) {
         total_num += order_list[i].number;
         total_price += order_list[i].price * order_list[i].number;
     }
-    for (var j = order_list.length + 1; j <= 3; j++) {
+
+    for (var j = order_list.length + 1; j <= 10; j++) {
         var order_id = "order_" + j;
         document.getElementById(order_id).style.display = 'none';
+        document.getElementById("range_" + j).innerText = '';
+        document.getElementById("amount_" + j).innerText = '';
+        document.getElementById("item_price_" + j).innerText = '';
     }
+
     document.getElementById("item_number").innerHTML = "_________________________<br>선택한 상품 " + total_num + "개";
     document.getElementById("total_price").innerHTML = total_price + "원<br>결제하기";
     total_list[0] = total_num;
     total_list[1] = total_price;
+
+    // 주문 목록이 비었는지 확인하고 초기화
+    if (order_list.length === 0) {
+        clear_order_list();
+    }
 }
 
+function clear_order_list() {
+    // 주문 목록 초기화
+    for (var i = 1; i <= 10; i++) {
+        var order_id = "order_" + i;
+        document.getElementById(order_id).style.display = 'none';
+        document.getElementById("range_" + i).innerText = '';
+        document.getElementById("amount_" + i).innerText = '';
+        document.getElementById("item_price_" + i).innerText = '';
+    }
+
+    document.getElementById("item_number").innerHTML = "_________________________<br>선택한 상품 0개";
+    document.getElementById("total_price").innerHTML = "0원<br>결제하기";
+    total_list[0] = 0;
+    total_list[1] = 0;
+}
 
 /*전체 삭제 창
 function 전체삭제() {
@@ -296,9 +345,9 @@ function close_w_카드결제() {
 
 function 결제완료() {
     alert("감사합니다. 결제가 완료되었습니다. 교환권과 카드를 챙겨가세요.");
-    location.href = "mega.html";
+    location.href = "index.html";
 }
 
 function herf_home() {
-    location.href = "mega.html";
+    location.href = "index.html";
 }
