@@ -1,18 +1,16 @@
 <!DOCTYPE html>
+<html lang="ko">
 {% load static %}
-<html lang="ko">    
-   
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'lgcon/CSS/Home.css' %}">
     <link rel="stylesheet" href="{% static 'lgcon/CSS/mega_menu.css' %}">
-    <title>퐁당커피</title>
-    <script src="{% static 'lgcon/JS/main.js' %}"></script>
-
+    <title>진동벨 키오스크 UI</title>
 </head>
 
 <body>
+    <script src= "{% static 'lgcon/JS/main.js' %}" ></script>
 
     <div class="kiosk_simulation">
 
@@ -29,9 +27,8 @@
                 <div id="mega_order">
                     <div id="top_bar">
                         <div id="mega_top_bar_home" onclick="herf_home()"></div>
-                        <div id="mega_top_bar_name"> LGcon KIOSK </div>
-                        <div id="mega_top_bar_lang"> LANG </div>
-                        <div>{{id}}</div>
+                        <div id="mega_top_bar_name">상명대학교 키오스크</div>
+                        <div id="mega_top_bar_lang">LANG</div>
                     </div>
 
                     <div id="mega_menu_bar">
@@ -482,6 +479,62 @@
                             <button onclick="increaseQuantity(6)">+</button>
                             <div id="item_price_7"></div>
                         </div>
+                        <div id="order_8" class="cart">
+                            <div id="delete_1" onclick="deleteItem(7)">X</div>
+                            <div id="range_8"></div>
+                            <button onclick="decreaseQuantity(7)">ㅡ</button>
+                            <div id="amount_8"></div>
+                            <button onclick="increaseQuantity(7)">+</button>
+                            <div id="item_price_8"></div>
+                        </div>
+                        <div id="order_9" class="cart">
+                            <div id="delete_1" onclick="deleteItem(8)">X</div>
+                            <div id="range_9"></div>
+                            <button onclick="decreaseQuantity(8)">ㅡ</button>
+                            <div id="amount_9"></div>
+                            <button onclick="increaseQuantity(8)">+</button>
+                            <div id="item_price_9"></div>
+                        </div>
+                        <div id="order_10" class="cart">
+                            <div id="delete_1" onclick="deleteItem(9)">X</div>
+                            <div id="range_10"></div>
+                            <button onclick="decreaseQuantity(9)">ㅡ</button>
+                            <div id="amount_10"></div>
+                            <button onclick="increaseQuantity(9)">+</button>
+                            <div id="item_price_10"></div>
+                        </div>
+                        <div id="order_11" class="cart">
+                            <div id="delete_1" onclick="deleteItem(10)">X</div>
+                            <div id="range_11"></div>
+                            <button onclick="decreaseQuantity(10)">ㅡ</button>
+                            <div id="amount_11"></div>
+                            <button onclick="increaseQuantity(10)">+</button>
+                            <div id="item_price_11"></div>
+                        </div>
+                        <div id="order_12" class="cart">
+                            <div id="delete_1" onclick="deleteItem(11)">X</div>
+                            <div id="range_12"></div>
+                            <button onclick="decreaseQuantity(11)">ㅡ</button>
+                            <div id="amount_12"></div>
+                            <button onclick="increaseQuantity(11)">+</button>
+                            <div id="item_price_12"></div>
+                        </div>
+                        <div id="order_13" class="cart">
+                            <div id="delete_1" onclick="deleteItem(12)">X</div>
+                            <div id="range_13"></div>
+                            <button onclick="decreaseQuantity(12)">ㅡ</button>
+                            <div id="amount_13"></div>
+                            <button onclick="increaseQuantity(12)">+</button>
+                            <div id="item_price_13"></div>
+                        </div>
+                        <div id="order_14" class="cart">
+                            <div id="delete_1" onclick="deleteItem(13)">X</div>
+                            <div id="range_14"></div>
+                            <button onclick="decreaseQuantity(13)">ㅡ</button>
+                            <div id="amount_14"></div>
+                            <button onclick="increaseQuantity(13)">+</button>
+                            <div id="item_price_14"></div>
+                        </div>
 
                     </div>
 
@@ -499,23 +552,6 @@
                 </div>
 
 
-                <!-- <div id="screen_bottom">
-                    <div id="barcode">
-                        <div id="barcode_img"></div>
-                        <div>바코드를 대주세요</div>
-                        <div id="barcode_png"></div>
-                    </div>
-                    <div id="insert_card">
-                        <div>카드를 넣어주세요</div>
-                        <div id="insert_card_block"></div>
-                        <div id="use_card_block">_______________________________</div>
-                        <div>카드를 긁어주세요</div>
-                        <div id="receipt">
-                            <div id="receipt_exit"></div>
-                            <div id="receipt_img"></div>
-                        </div>
-                    </div>
-                </div> -->
                 <div id="insert_card_moving" onclick="결제완료()"></div>
 
                 <div id="screen_to_window_pay"></div>
@@ -554,7 +590,7 @@
                             <div id="w_order_7"></div>
                             <div id="w_number_7"></div>
                         </div>
-
+                        
                     </div>
                     <div id="window_num_price">
                         <div id="window_num">
