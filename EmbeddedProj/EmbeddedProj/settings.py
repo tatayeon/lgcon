@@ -77,9 +77,13 @@ WSGI_APPLICATION = 'EmbeddedProj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'demo',
+        'NAME': 'skrr',
         'USER': 'root',
+<<<<<<< HEAD
         'PASSWORD': 'ekdma135!', 
+=======
+        'PASSWORD': '2465',
+>>>>>>> 4739ad6f3557b0ea352542c60511200d81a816f6
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

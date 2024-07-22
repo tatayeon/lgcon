@@ -1,9 +1,9 @@
 /*추천 음료 부분*/
 #ice_아메리카노 {
-    background: url(../img/mega_%28ICE%29아메리카노.jpg) no-repeat center / cover;
+    background: url(img/mega_\(ICE\)아메리카노.jpg) no-repeat center / cover;
 }
 #유니콘프라페 {
-    background: url("/img/mega_유니콘프라페.jpg")  no-repeat center / cover;
+    background: url(img/mega_유니콘프라페.jpg)  no-repeat center / cover;
 }
 #딸기쿠키프라페 {
     background: url(img/mega_딸기쿠키프라페.jpg)  no-repeat center / cover;
@@ -16,7 +16,7 @@
     background: url(img/mega_\(HOT\)토피넛마끼아또.jpg) no-repeat center / cover;
 }
 #ice_토피넛마끼아또 {
-    background: url(img/mega_\(ICE\)토피넛마끼아또.jpg) no-repeat center / cover;   
+    background: url(img/mega_\(ICE\)토피넛마끼아또.jpg) no-repeat center / cover;
 }
 #hot_레몬차 {
     background: url(img/mega_\(HOT\)레몬차.jpg) no-repeat center / cover;
