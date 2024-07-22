@@ -74,12 +74,13 @@ WSGI_APPLICATION = 'EmbeddedProj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# 여기는 내 거에 맞추기
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'demo',
+        'NAME': 'newschema',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': 'ry9978',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

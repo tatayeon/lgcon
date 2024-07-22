@@ -11,6 +11,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
     
+    
     def get_absolute_url(self):
         return f'/lgcon/category/{self}/'
     
@@ -26,6 +27,9 @@ class Menu(models.Model):
     menu_image = models.ImageField(upload_to='lgcon/menu_image/', blank= True)
 
     category = models.ForeignKey(Category, null=True, on_delete = models.SET_NULL)
+    
+    def __str__(self):
+        return f'[{self.pk}] {self.name}'
 
 
 
