@@ -103,7 +103,7 @@ body {
 
 
 
-/* 메가커피 키오스크 */
+/*메가커피 키오스크*/
 .kiosk_simulation {
     display:flex;
     justify-content: center;
@@ -111,18 +111,16 @@ body {
 }
 
 .kiosk_mega_backdround { /*검정 기계 배경*/
-    width: 400px;
+    width: 360px;
     height: 95vh;
-    background-color: black;
-    border-radius: 15px;
+    background-color: darkblue;
     margin-top: 1vh;
 }
 
 .kiosc_mega_screen { /*터치스크린 배경*/
-    width: 380px;
-    height: 90vh;
+    width: 340px;
+    height: 92vh;
     background-color: #F7F7F7;
-    border-radius: 15px;
     margin: 11px;
     position: absolute;
 }
@@ -130,8 +128,7 @@ body {
 #mega_start_img { /*처음 시작 화면*/
     width: 100%;
     height: 100%;
-    background: url(img/mega_start_img.jpg) no-repeat center / cover;
-    border-radius: 15px;
+    background: url(img/메인시작화면.png) no-repeat center / cover;
 }
 
 #mega_start_btn { 
@@ -147,7 +144,7 @@ body {
 
 /*상단부분*/
 #top_bar {
-    background: lightpink;
+    background: rgb(60, 195, 240);
     width: 100%;
     height: 4vh;
 
@@ -169,12 +166,12 @@ body {
 #mega_top_bar_lang {
     width: 60px;
     height: 30px;
-    background: url(barcode_img.png);
+    background: url(img/mega_top_bar_lang.png);
 }
 
 /*메뉴바 부분*/
 #mega_menu_bar  {
-    background: lightpink;
+    background: rgb(146, 215, 239);
     color: white;
     padding-top: 7px;
     padding-bottom: 5px;
@@ -254,6 +251,7 @@ body {
     background: white;
     font-size: 12px;
     flex-direction: column;
+    overflow-y: auto;  /* 세로 스크롤 활성화 */
 }
 #order_lsit div {
     height: 15%;
@@ -292,7 +290,6 @@ body {
     font-size: 10px;
 }
 
-
 #order_list_right {
     width: 35%;
     flex-direction: column;
@@ -323,7 +320,7 @@ body {
 #pay_btn {
     width: 100%;
     height: 50%;
-    background: #ef4444;
+    background: rgb(60, 195, 240);
     border-radius: 8px;
     display: flex;
     color: white;
@@ -387,19 +384,6 @@ body {
     margin-top: 10%;
     font-size: 10px;
     margin-left: 5%;
-}
-#barcode_img{
-    margin-left: 18%;
-    width: 30px;
-    height: 18px;
-    background: url(img/barcode_img.png) no-repeat center / cover;
-
-}
-#barcode_png {
-    margin-top: 4%;
-    width: 90px;
-    height: 54px;
-    background: url(img/barcode.png) no-repeat center / cover;
 }
 #insert_card {
     margin-top: 3%;
