@@ -78,15 +78,15 @@ WSGI_APPLICATION = 'EmbeddedProj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-<<<<<<< HEAD
-        'NAME': 'newschema',
-        'USER': 'root',
-        'PASSWORD': 'ry9978',
-=======
+
         'NAME': 'skrr',
         'USER': 'root',
-        'PASSWORD': '2465',
->>>>>>> 4739ad6f3557b0ea352542c60511200d81a816f6
+        'PASSWORD': 'ry9978',
+
+        # 'NAME': 'skrr',
+        # 'USER': 'root',
+        # 'PASSWORD': '2465',
+
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
