@@ -115,10 +115,41 @@ function Item(name, price) {
 var order_list = [];
 
 // 메뉴 항목 선택 함수
+document.addEventListener("DOMContentLoaded", function() {
+    const drinks = document.querySelectorAll(".drink-item");
+    
+    drinks.forEach(drink => {
+        drink.addEventListener("click", function() {
+            const drinkId = this.getAttribute("data-drink-id");
+            const selectedItems = document.querySelectorAll(`.drink-item.selected[data-drink-id="${drinkId}"]`);
+            
+            // 이미 선택된 항목에서 클래스 제거
+            selectedItems.forEach(item => item.classList.remove("selected"));
+            
+            // 클릭한 항목에 클래스 추가
+            this.classList.add("selected");
+            
+            // 동일한 data-drink-id를 가진 다른 항목에도 클래스 추가
+            const sameIdItems = document.querySelectorAll(`.drink-item[data-drink-id="${drinkId}"]`);
+            sameIdItems.forEach(item => item.classList.add("selected"));
+        });
+    });
+});
+
 function option(id, type, price) {
     var drink = document.getElementById(id);
+    var drinkId = drink.getAttribute("data-drink-id");
+
+    // 선택된 음료의 테두리를 빨간색으로 설정
     drink.style.borderStyle = 'solid';
     drink.style.borderColor = 'red';
+
+    // 관련 카테고리의 동일한 음료에 대해 테두리 설정
+    var relatedDrinks = document.querySelectorAll(`.drink-item[data-drink-id='${drinkId}']`);
+    relatedDrinks.forEach(function(relatedDrink) {
+        relatedDrink.style.borderStyle = 'solid';
+        relatedDrink.style.borderColor = 'red';
+    });
 
     var order = new Item(id, price);
     var existingOrder = order_list.find(item => item.name === id);
@@ -128,20 +159,25 @@ function option(id, type, price) {
         order.number += 1;
         order_list.push(order);
     }
-    
-    open_order_list(order_list);
 
-    
+    open_order_list(order_list);
 }
+
+
 
 //x키 삭제 함수
 function deleteItem(index) {
     if (index >= 0 && index < order_list.length) {
-        resetItemBorder(order_list[index].name); // 항목 삭제 시 테두리 초기화
+        // 해당 항목의 스타일 초기화
+        resetItemBorder(order_list[index].name);
+
+        // 주문 목록에서 해당 항목 삭제
         order_list.splice(index, 1);
-        open_order_list(order_list);
+
+        // 주문 목록 업데이트
+        updateOrderList();
     } else {
-        console.error("Invalid index: ", index);
+        console.error("잘못된 인덱스: ", index);
     }
 
     // 주문 목록이 비었는지 확인하고 초기화
@@ -150,13 +186,13 @@ function deleteItem(index) {
     }
 }
 
-// 주문 항목 테두리 초기화 함수
-function resetItemBorder(id) {
-    var drink = document.getElementById(id);
-    if (drink) {
-        drink.style.borderStyle = 'none';
+function resetItemBorder(itemName) {
+    var item = document.getElementById(itemName);
+    if (item) {
+        item.style.borderStyle = 'none';
     }
 }
+
 
 // +키를 눌렀을 때 1개 추가
 function increaseQuantity(index) {
@@ -216,7 +252,7 @@ function open_order_list(order_list) {
         total_price += order_list[i].price * order_list[i].number;
     }
 
-    for (var j = order_list.length + 1; j <= 10; j++) {
+    for (var j = order_list.length + 1; j <= 15; j++) {
         var order_id = "order_" + j;
         document.getElementById(order_id).style.display = 'none';
         document.getElementById("range_" + j).innerText = '';
@@ -235,9 +271,30 @@ function open_order_list(order_list) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const drinks = document.querySelectorAll(".drink-item");
+    
+    drinks.forEach(drink => {
+        drink.addEventListener("click", function() {
+            const drinkId = this.getAttribute("data-drink-id");
+            const selectedItems = document.querySelectorAll(`.drink-item.selected[data-drink-id="${drinkId}"]`);
+            
+            // 이미 선택된 항목에서 클래스 제거
+            selectedItems.forEach(item => item.classList.remove("selected"));
+            
+            // 클릭한 항목에 클래스 추가
+            this.classList.add("selected");
+            
+            // 동일한 data-drink-id를 가진 다른 항목에도 클래스 추가
+            const sameIdItems = document.querySelectorAll(`.drink-item[data-drink-id="${drinkId}"]`);
+            sameIdItems.forEach(item => item.classList.add("selected"));
+        });
+    });
+});
+
 function clear_order_list() {
     // 주문 목록 초기화
-    for (var i = 1; i <= 10; i++) {
+    for (var i = 1; i <= 15; i++) { // 범위를 15로 확장
         var order_id = "order_" + i;
         document.getElementById(order_id).style.display = 'none';
         document.getElementById("range_" + i).innerText = '';
@@ -249,6 +306,42 @@ function clear_order_list() {
     document.getElementById("total_price").innerHTML = "0원<br>결제하기";
     total_list[0] = 0;
     total_list[1] = 0;
+}   
+
+function updateOrderList() {
+    var total_num = 0;
+    var total_price = 0;
+
+    for (var i = 0; i < order_list.length; i++) {
+        var order_id = "order_" + (i + 1);
+        document.getElementById(order_id).style.display = 'flex';
+
+        document.getElementById("range_" + (i + 1)).innerText = (i + 1) + ". " + order_list[i].name;
+        document.getElementById("amount_" + (i + 1)).innerText = order_list[i].number + "개";
+        document.getElementById("item_price_" + (i + 1)).innerText = order_list[i].price * order_list[i].number + "원";
+
+        total_num += order_list[i].number;
+        total_price += order_list[i].price * order_list[i].number;
+    }
+
+    // 남은 항목 숨기기
+    for (var j = order_list.length + 1; j <= 15; j++) { // 범위를 15로 확장
+        var order_id = "order_" + j;
+        document.getElementById(order_id).style.display = 'none';
+        document.getElementById("range_" + j).innerText = '';
+        document.getElementById("amount_" + j).innerText = '';
+        document.getElementById("item_price_" + j).innerText = '';
+    }
+
+    document.getElementById("item_number").innerHTML = "_________________________<br>선택한 상품 " + total_num + "개";
+    document.getElementById("total_price").innerHTML = total_price + "원<br>결제하기";
+    total_list[0] = total_num;
+    total_list[1] = total_price;
+
+    // 주문 목록이 비었는지 확인하고 초기화
+    if (order_list.length === 0) {
+        clear_order_list();
+    }
 }
 
 /*전체 삭제 창
@@ -345,9 +438,9 @@ function close_w_카드결제() {
 
 function 결제완료() {
     alert("감사합니다. 결제가 완료되었습니다. 교환권과 카드를 챙겨가세요.");
-    location.href = "index.html";
+    location.href = "127.0.0.1:8000/<int:pk>/";
 }
 
-function herf_home() {
-    location.href = "index.html";
-}
+/*function herf_home() {
+    location.href = "<int:pk>/";
+}*/
