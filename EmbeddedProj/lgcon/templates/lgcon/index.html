@@ -12,12 +12,12 @@
 <body>
     <script src= "{% static 'lgcon/JS/main.js' %}" ></script>
 
-    <div class="kiosk_simulation">
+    <div class="kiosk_simulation">  
 
         <div class="kiosk_mega_backdround">
 
             <div class="kiosc_mega_screen">
-
+                
 
                 <div id="mega_start_img">
                     <button id="mega_start_btn" onclick="start_btn()"></button>
@@ -29,15 +29,15 @@
                         <div id="mega_top_bar_home" onclick="herf_home()"></div>
                         <div id="mega_top_bar_name">상명대학교 키오스크</div>
                         <div id="mega_top_bar_lang">LANG</div>
+                        <!-- <div>{{menu}}</div> -->
+                        
                     </div>
 
                     <div id="mega_menu_bar">
                         <div id="menu_bar_left" onclick="turn_menu_page(this.id)">&#60;</div>
-                        <div class="mega_menu_1"  title="추천_음료" onclick="open_menu_table(this.title)">추천(음료)</div>
-                        <div class="mega_menu_1" title="추천_디저트" onclick="open_menu_table(this.title)">추천(디저트)</div>
-                        <div class="mega_menu_1" title="커피_HOT" onclick="open_menu_table(this.title)">커피(HOT)</div>
-                        <div class="mega_menu_1" title="커피_ICE" onclick="open_menu_table(this.title)">커피(ICE)</div>
-
+                        {% for ca in category %}
+                        <div class="mega_menu_1"  title="{{ca}}" onclick="open_menu_table(this.title)">{{ca}}</div> 
+                        {% endfor %}
 
                         <div class="mega_menu_2"  title="스무디_프라페" onclick="open_menu_table(this.title)">스무디&프라페</div>
                         <div class="mega_menu_2" title="에이드_주스" onclick="open_menu_table(this.title)">에이드&주스</div>
@@ -48,6 +48,7 @@
                         <div class="mega_menu_3" title="디저트" onclick="open_menu_table(this.title)">디저트</div>
                         <div class="mega_menu_3" ></div>
                         <div class="mega_menu_3" ></div>
+
 
 
                         <!-- <div class="mega_menu_3" title="아이스크림" onclick="open_menu_table(this.title)">아이스크림</div>  -->
@@ -69,6 +70,10 @@
 
                     <div id="추천_음료" class="p1">
                         <div id="row">
+                            {% for i in menu %}
+                            <div>{{i.name}}</div>
+                            <div>{{i.menu_image}}</div>
+                            <div>{{i.price}}</div>
                             <div id="ice_아메리카노" title="coffee" data-price="2000"
                                 onclick="option(this.id, this.title, this.dataset.price)"></div>
                             <div id="유니콘프라페" title="no_option" data-price="4800"
@@ -77,6 +82,7 @@
                                 onclick="option(this.id, this.title, this.dataset.price)"></div>
                             <div id="커피프라페" title="no_option" data-price="3900"
                                 onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            {% endfor %}
                         </div>
                         <div id="row">
                             <div id="hot_토피넛마끼아또" title="coldbrew" data-price="3900"
